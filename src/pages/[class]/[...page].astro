@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.svelte';
 import { Debug } from 'astro/components';
+import type { Class } from '../../interfaces/class';
 
 import { getClasses, getSpells } from '../../lib/api';
 
@@ -8,7 +9,7 @@ export const getStaticPaths = async () => {
   const mainClasses = await getClasses();
   const allSpells = await getSpells();
 
-  return mainClasses.map((mainClass: Object) => {
+  return mainClasses.map((mainClass: Class) => {
     const filteredSpells = allSpells.filter((spell) =>
       spell.classes?.map((className) => className.index).includes(mainClass.index)
     );

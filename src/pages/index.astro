@@ -1,14 +1,19 @@
 ---
 import Layout from '../layouts/Layout.svelte'
+import ClassesGrid from '../components/ClassesGrid.svelte'
+import { Debug } from 'astro/components'
 
 import { getClasses, getFeaturesByClass, getSpells } from '../lib/api'
 
 const classes = await getClasses()
-const features = await getFeaturesByClass('wizard')
-const spells = await getSpells()
+// const features = await getFeaturesByClass('wizard')
+// const spells = await getSpells()
 
 ---
+<!-- <Debug {classes}/> -->
 <Layout>
-	<p>the layout component :)</p>
-	
+	<div>
+    <small>I'm gonna be a navbar</small>
+  </div>
+	<ClassesGrid classes={classes}/>
 </Layout>
