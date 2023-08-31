@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.svelte'
+
+import { getClasses, getFeaturesByClass, getSpells } from '../lib/api'
+
+const classes = await getClasses()
+const features = await getFeaturesByClass('wizard')
+const spells = await getSpells()
+
+---
+<Layout>
+	<p>the layout component :)</p>
+	
+</Layout>

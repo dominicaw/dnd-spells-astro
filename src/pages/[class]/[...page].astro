@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.svelte';
+import { Debug } from 'astro/components';
+
+import { getClasses, getSpells } from '../../lib/api';
+
+export const getStaticPaths = async () => {
+  const mainClasses = await getClasses();
+  const allSpells = await getSpells();
+
+  return mainClasses.map((mainClass: Object) => {
+    const filteredSpells = allSpells.filter((spell) =>
+      spell.classes?.map((className) => className.index).includes(mainClass.index)
+    );
+    return {
+      params: { class: mainClass.index },
+      props: {
+        mainClass: mainClass,
+        spells: filteredSpells,
+      },
+    };
+  });
+};
+
+const { mainClass, spells } = Astro.props;
+---
+
+<Layout>
+  These are spells for {mainClass.index}
+  {spells?.map((spell: any) => <p>{spell.name}</p>)}
+</Layout>
