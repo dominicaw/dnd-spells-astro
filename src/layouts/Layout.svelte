@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <main class="mt-8 max-w-[1200px] mx-auto">
+  <main class="mt-8 max-w-[1200px] mx-auto px-4 xlg:px-0">
     <slot />
   </main>
 </body>
