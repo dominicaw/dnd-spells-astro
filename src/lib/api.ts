@@ -1,7 +1,7 @@
-import axios, { Axios, AxiosResponse } from 'axios';
-import type { Feature, FeaturesData } from '../interfaces/feature';
-import type { Spell, SpellsData } from '../interfaces/spells';
-import type { Class, ClassData } from '../interfaces/class';
+import axios, { Axios, AxiosResponse } from 'axios'
+import type { Feature, FeaturesData } from '../interfaces/feature'
+import type { Spell, SpellsData } from '../interfaces/spells'
+import type { Class, ClassData } from '../interfaces/class'
 
 export const getClasses = async (): Promise<Class[]> => {
   try {
@@ -31,17 +31,18 @@ export const getClasses = async (): Promise<Class[]> => {
           }
         `,
       }
-    );
+    )
 
-    return response.data.data.classes;
+    return response.data.data.classes
   } catch (err) {
-      console.error('Error:', err);
-      return [];
+    console.error('Error:', err)
+    return []
   }
-};
+}
 
-
-export const getFeaturesByClass = async (classParam: string): Promise<Feature[]> => {
+export const getFeaturesByClass = async (
+  classParam: string
+): Promise<Feature[]> => {
   try {
     const response: AxiosResponse<FeaturesData> = await axios.post(
       'https://www.dnd5eapi.co/graphql/',
@@ -61,14 +62,14 @@ export const getFeaturesByClass = async (classParam: string): Promise<Feature[]>
           class: classParam,
         },
       }
-    );
+    )
 
-    return response.data.data.features;
+    return response.data.data.features
   } catch (err) {
-      console.error('Error:', err);
-      return [];
+    console.error('Error:', err)
+    return []
   }
-};
+}
 
 export const getSpells = async (): Promise<Spell[]> => {
   try {
@@ -101,15 +102,19 @@ export const getSpells = async (): Promise<Spell[]> => {
               classes {
                 index
               }
+              concentration
+              school {
+                name
+              }
             }
           }
         `,
       }
-    );
+    )
 
-    return response.data.data.spells;
+    return response.data.data.spells
   } catch (err) {
-      console.error('Error:', err);
-      return [];
+    console.error('Error:', err)
+    return []
   }
-};
+}

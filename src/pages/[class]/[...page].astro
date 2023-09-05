@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.svelte';
+import SpellsGrid from '../../components/SpellsGrid/SpellsGrid.svelte'
 import { Debug } from 'astro/components';
 import type { Class } from '../../interfaces/class';
+import type { Spell } from '../../interfaces/spells';
 
 import { getClasses, getSpells } from '../../lib/api';
 
@@ -27,6 +29,8 @@ const { mainClass, spells } = Astro.props;
 ---
 
 <Layout>
-  These are spells for {mainClass.index}
-  {spells?.map((spell: any) => <p>{spell.name}</p>)}
+  <section>
+    These are spells for {mainClass.index}
+    <SpellsGrid spells={spells}/>
+  </section>
 </Layout>
