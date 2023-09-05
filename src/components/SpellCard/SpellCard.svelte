@@ -23,5 +23,9 @@
         Concentration,
       {/if}{currentSpell.duration}
     </p>
+    {#if currentSpell.dc}
+      <p><strong>Saving throw:</strong> {currentSpell.dc.type.full_name}</p>
+    {/if}
+    <p />
   </div>
 </a>

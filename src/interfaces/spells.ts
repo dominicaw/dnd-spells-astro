@@ -14,6 +14,7 @@ export interface Spell {
   classes: Array<string>
   concentration: string
   school: Array<string>
+  dc: Array<string>
 }
 
 export interface SpellsData {
