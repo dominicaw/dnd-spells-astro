@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.svelte';
+import type { Spell } from '../interfaces/spells';
+import { classEmoji, classEmojiSorter } from '../helpers/classEmoji'
+
+import { getSpells } from '../lib/api';
+
+export const getStaticPaths = async () => {
+  const allSpells = await getSpells();
+
+  return allSpells.map((currentSpell: Spell) => {
+    return {
+      params: { spell: currentSpell.index },
+      props: {
+        spell: currentSpell,
+      },
+    };
+  });
+};
+
+const { spell } = Astro.props;
+---
+
+<Layout>
+  <section>
+    <p>{spell.name}</p>
+    <p>{spell.desc}</p>
+  </section>
+</Layout>
