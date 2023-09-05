@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Navbar from '../components/Navbar/Navbar.svelte'
   export let title: string = 'D&D - 5th Edition'
 </script>
 
@@ -11,8 +12,9 @@
     <title>{title}</title>
   </head>
 
+  <Navbar />
   <body>
-    <main class="mt-8 max-w-[1200px] mx-auto px-4 xlg:px-0">
+    <main class="my-8 max-w-[1200px] mx-auto px-4 xlg:px-0">
       <slot />
     </main>
   </body>
@@ -24,9 +26,5 @@
   html {
     font-family: 'Montserrat', Helvetica, system-ui, sans-serif;
     background-color: #f6f6f6;
-  }
-
-  body {
-    padding-top: 62px;
   }
 </style>

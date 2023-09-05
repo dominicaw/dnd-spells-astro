@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Spells } from '../../interfaces/spells'
+  import type { Spell } from '../../interfaces/spells'
   import SpellCard from '../SpellCard/SpellCard.svelte'
-  export let spells: Spells[]
+  export let spells: Spell[]
 </script>
 
 <section>

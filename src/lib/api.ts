@@ -77,8 +77,8 @@ export const getSpells = async (): Promise<Spell[]> => {
       'https://www.dnd5eapi.co/graphql/',
       {
         query: `
-          query getSpells {
-            spells {
+          query getSpells($order: SpellOrder) {
+            spells(order: $order) {
               name
               desc
               index
@@ -109,6 +109,11 @@ export const getSpells = async (): Promise<Spell[]> => {
             }
           }
         `,
+        variables: {
+          order: {
+            by: 'NAME',
+          },
+        },
       }
     )
 
