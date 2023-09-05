@@ -106,6 +106,11 @@ export const getSpells = async (): Promise<Spell[]> => {
               school {
                 name
               }
+              dc {
+                type {
+                  full_name
+                }
+              }
             }
           }
         `,
