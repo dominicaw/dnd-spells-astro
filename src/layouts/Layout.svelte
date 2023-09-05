@@ -12,8 +12,8 @@
     <title>{title}</title>
   </head>
 
-  <Navbar />
   <body>
+    <Navbar />
     <main class="my-8 max-w-[1200px] mx-auto px-4 xlg:px-0">
       <slot />
     </main>

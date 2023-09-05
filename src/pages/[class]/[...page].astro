@@ -1,9 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.svelte';
 import SpellsGrid from '../../components/SpellsGrid/SpellsGrid.svelte'
-import { Debug } from 'astro/components';
 import type { Class } from '../../interfaces/class';
-import type { Spell } from '../../interfaces/spells';
+import { classEmoji, classEmojiSorter } from '../../helpers/classEmoji'
 
 import { getClasses, getSpells } from '../../lib/api';
 
@@ -30,7 +29,10 @@ const { mainClass, spells } = Astro.props;
 
 <Layout>
   <section>
-    These are spells for {mainClass.index}
+    <h1 class="text-2xl pb-4">
+      <span class="text-[40px] mr-3">{classEmojiSorter(mainClass.index, classEmoji)}</span>
+      {mainClass.name}
+    </h1>
     <SpellsGrid spells={spells}/>
   </section>
 </Layout>

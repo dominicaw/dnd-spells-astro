@@ -14,3 +14,13 @@ export const classEmoji: ClassEmoji = {
   wizard: '🧙',
   warlock: '😈',
 }
+
+export const classEmojiSorter: Function = (
+  className: string,
+  classEmoji: ClassEmoji
+) => {
+  if (className in classEmoji) {
+    return classEmoji[className]
+  }
+  return '🤷‍♀️'
+}
