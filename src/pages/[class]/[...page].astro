@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.svelte';
-import SpellsGrid from '../../components/SpellsGrid/SpellsGrid.svelte'
+import SpellsGrid from '../../components/SpellsGrid/SpellsGrid.svelte';
+import { classEmoji, classEmojiSorter } from '../../helpers/classEmoji';
 import type { Class } from '../../interfaces/class';
-import { classEmoji, classEmojiSorter } from '../../helpers/classEmoji'
+import Layout from '../../layouts/Layout.svelte';
 
 import { getClasses, getSpells } from '../../lib/api';
 
@@ -26,7 +26,6 @@ export const getStaticPaths = async () => {
 
 const { mainClass, spells } = Astro.props;
 ---
-
 <Layout>
   <section>
     <h1 class="text-2xl pb-4">

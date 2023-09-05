@@ -6,9 +6,13 @@
 
 <section>
   <div class="grid gap-8 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-    {#each spells as currentSpell}
-      <SpellCard {currentSpell} />
-    {/each}
+    {#if Object.keys(spells).length === 0}
+      <p>Sorry, no spells 🤷‍♀️</p>
+    {:else}
+      {#each spells as currentSpell}
+        <SpellCard {currentSpell} />
+      {/each}
+    {/if}
   </div>
 </section>
 

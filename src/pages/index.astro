@@ -1,14 +1,12 @@
 ---
-import Layout from '../layouts/Layout.svelte'
-import ClassesGrid from '../components/ClassesGrid/ClassesGrid.svelte'
-import { Debug } from 'astro/components'
+import ClassesGrid from '../components/ClassesGrid/ClassesGrid.svelte';
+import Layout from '../layouts/Layout.svelte';
 
-import { getClasses, getFeaturesByClass, getSpells } from '../lib/api'
+import { getClasses } from '../lib/api';
 
 const classes = await getClasses()
 
 ---
-<!-- <Debug {classes}/> -->
 <Layout>
 	<section>
     <ClassesGrid classes={classes}/>
