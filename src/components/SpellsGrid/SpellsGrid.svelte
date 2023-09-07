@@ -5,7 +5,9 @@
 </script>
 
 <section>
-  <div class="grid gap-8 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+  <div
+    class="grid gap-8 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 text-stone-700"
+  >
     {#if Object.keys(spells).length === 0}
       <p>Sorry, no spells 🤷‍♀️</p>
     {:else}

@@ -1,4 +1,5 @@
 ---
+import SpellPage from '../components/SpellPage/SpellPage.svelte';
 import type { Spell } from '../interfaces/spells';
 import Layout from '../layouts/Layout.svelte';
 
@@ -22,7 +23,6 @@ const { spell } = Astro.props;
 
 <Layout>
   <section>
-    <p>{spell.name}</p>
-    <p>{spell.desc}</p>
+    <SpellPage {spell}/>
   </section>
 </Layout>
