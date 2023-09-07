@@ -1,21 +1,62 @@
 <script lang="ts">
+	import SvelteMarkdown from 'svelte-markdown';
 	import type { Spell } from '../../interfaces/spells';
+	import SpellComponent from './SpellComponent/SpellComponent.svelte';
 	export let spell: Spell;
 </script>
 
-<article>
+<header>
 	<h1 class="pb-4 text-2xl">{spell.name}</h1>
 	<hr />
-	<div class="grid grid-cols-4 gap-4">
-		<div class="rounded bg-stone-300 p-4 text-center text-sm">
+	<div
+		class="my-4 grid auto-rows-auto grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
+	>
+		<SpellComponent>
 			{#if spell.level == 0}
 				<p>{spell.school.name} cantrip</p>
 			{:else}
 				<p>Level {spell.level} {spell.school.name}</p>
 			{/if}
-		</div>
+		</SpellComponent>
+		<SpellComponent>
+			<p>{spell.casting_time}</p>
+		</SpellComponent>
+		<SpellComponent>
+			<p>{spell.range}</p>
+		</SpellComponent>
+		<SpellComponent>
+			<p>
+				{#if spell.concentration}
+					Concentration,
+				{/if}
+				<span class="lowercase">{spell.duration}</span>
+			</p>
+		</SpellComponent>
+		{#if spell.dc}
+			<SpellComponent>
+				<p>{spell.dc.type.full_name} saving throw</p>
+			</SpellComponent>
+		{/if}
+		{#if spell.damage}
+			<SpellComponent>
+				<p>
+					{spell.damage?.damage_at_slot_level[0].damage} (Level {spell.damage
+						?.damage_at_slot_level[0].level})
+				</p>
+			</SpellComponent>
+		{/if}
+		{#if spell.area_of_effect}
+			<SpellComponent>
+				<p>{spell.area_of_effect?.size}ft</p>
+				<p class="ml-1 lowercase">{spell.area_of_effect?.type}</p>
+			</SpellComponent>
+		{/if}
 	</div>
-	<p>{spell.desc}</p>
+</header>
+<article>
+	{#each spell.desc as paragraph}
+		<div><SvelteMarkdown source={paragraph} /></div>
+	{/each}
 </article>
 
 <style>

@@ -5,7 +5,6 @@
 </script>
 
 <section>
-	<!-- this is a grid smile -->
 	<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 		{#each classes as currentClass}
 			<ClassCard {currentClass} />

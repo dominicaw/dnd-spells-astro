@@ -21,7 +21,8 @@
 			<strong>Duration: </strong>
 			{#if currentSpell.concentration}
 				Concentration,
-			{/if}{currentSpell.duration}
+			{/if}
+			{currentSpell.duration}
 		</p>
 		{#if currentSpell.dc}
 			<p><strong>Saving throw:</strong> {currentSpell.dc.type.full_name}</p>
