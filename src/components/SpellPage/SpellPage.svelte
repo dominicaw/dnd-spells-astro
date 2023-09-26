@@ -12,10 +12,10 @@
 		class="my-4 grid auto-rows-auto grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
 	>
 		<SpellComponent>
-			{#if spell.level == 0}
-				<p>{spell.school.name} cantrip</p>
+			{#if spell.spell_level == 0}
+				<p>{spell.school} cantrip</p>
 			{:else}
-				<p>Level {spell.level} {spell.school.name}</p>
+				<p>Level {spell.spell_level} {spell.school}</p>
 			{/if}
 		</SpellComponent>
 		<SpellComponent>
@@ -54,9 +54,7 @@
 	</div>
 </header>
 <article>
-	{#each spell.desc as paragraph}
-		<div><SvelteMarkdown source={paragraph} /></div>
-	{/each}
+	{spell.desc}
 </article>
 
 <style>

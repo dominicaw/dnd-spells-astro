@@ -32,7 +32,7 @@ const { mainClass, spells } = Astro.props;
 <Layout>
   <section>
     <h1 class="text-2xl pb-4">
-      <span class="text-[40px] mr-3">{classEmojiSorter(mainClass.index, classEmoji)}</span>
+      <span class="text-[40px] mr-3">{classEmojiSorter(mainClass.slug, classEmoji)}</span>
       {mainClass.name}
     </h1>
     <SpellsGrid spells={spells}/>
