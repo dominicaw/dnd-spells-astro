@@ -3,7 +3,7 @@
 	export let currentSpell: Spell;
 </script>
 
-<a href="/{currentSpell?.index}">
+<a href="/{currentSpell?.slug}">
 	<article
 		class="h-full rounded bg-white p-5 shadow-lg shadow-stone-200 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 hover:text-white"
 	>

@@ -4,24 +4,27 @@ import { classEmoji, classEmojiSorter } from '../../helpers/classEmoji';
 import type { Class } from '../../interfaces/class';
 import Layout from '../../layouts/Layout.svelte';
 
-import { getClasses, getSpells } from '../../lib/api';
+import { getClasses, getSpellsByClass } from '../../lib/api';
 
 export const getStaticPaths = async () => {
   const mainClasses = await getClasses();
-  const allSpells = await getSpells();
 
-  return mainClasses.map((mainClass: Class) => {
-    const filteredSpells = allSpells.filter((spell) =>
-      spell.classes?.map((className) => className.index).includes(mainClass.index)
-    );
+  // Use Promise.all() to fetch spells for all main classes in parallel
+  const promises = mainClasses.map(async (mainClass) => {
+    const filteredSpells = await getSpellsByClass(mainClass.slug);
     return {
-      params: { class: mainClass.index },
+      params: { class: mainClass.slug },
       props: {
         mainClass: mainClass,
         spells: filteredSpells,
       },
     };
   });
+
+  // Wait for all promises to resolve
+  const pathsData = await Promise.all(promises);
+
+  return pathsData;
 };
 
 const { mainClass, spells } = Astro.props;

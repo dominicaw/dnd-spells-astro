@@ -10,7 +10,7 @@ export const getStaticPaths = async () => {
 
   return allSpells.map((currentSpell: Spell) => {
     return {
-      params: { spell: currentSpell.index },
+      params: { spell: currentSpell.slug },
       props: {
         spell: currentSpell,
       },

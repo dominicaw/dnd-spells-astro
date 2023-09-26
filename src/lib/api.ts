@@ -3,132 +3,57 @@ import type { Feature, FeaturesData } from '../interfaces/feature';
 import type { Spell, SpellsData } from '../interfaces/spells';
 import type { Class, ClassData } from '../interfaces/class';
 
-export const getClasses = async (): Promise<Class[]> => {
+const apiUrl = 'https://api.open5e.com/v1';
+const documentSlug = 'document__slug__iexact=wotc-srd'; //only return spells from the players handbook
+
+export const getSpells = async (): Promise<SpellsData> => {
 	try {
-		const response: AxiosResponse<ClassData[]> = await axios.post(
-			'https://www.dnd5eapi.co/graphql/',
-			{
-				query: `
-          query getClasses {
-            classes {
-              name
-              index
-              hit_die
-              saving_throws {
-                index
-                name
-              }
-              proficiencies {
-                name
-                index
-              }
-              starting_equipment_options {
-                type
-                desc
-                choose
-              }
-            }
-          }
-        `
-			}
+		const response = await fetch(
+			`${apiUrl}/spells/?${documentSlug}&limit=1000`
 		);
 
-		return response.data.data.classes;
-	} catch (err) {
-		console.error('Error:', err);
-		return [];
+		if (!response.ok) {
+			throw new Error(`Request failed with status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data.results;
+	} catch (error) {
+		console.error('Error fetching spells:', error);
+		throw error;
 	}
 };
 
-export const getFeaturesByClass = async (
-	classParam: string
-): Promise<Feature[]> => {
+export const getClasses = async (): Promise<ClassData> => {
 	try {
-		const response: AxiosResponse<FeaturesData> = await axios.post(
-			'https://www.dnd5eapi.co/graphql/',
-			{
-				query: `
-          query getFeatures($class: StringFilter) {
-            features(class: $class) {
-              index
-              level
-              class {
-                name
-              }
-            }
-          }
-        `,
-				variables: {
-					class: classParam
-				}
-			}
-		);
+		const response = await fetch(`${apiUrl}/classes`);
 
-		return response.data.data.features;
-	} catch (err) {
-		console.error('Error:', err);
-		return [];
+		if (!response.ok) {
+			throw new Error(`Request failed with status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data.results;
+	} catch (error) {
+		console.error('Error fetching classes:', error);
+		throw error;
 	}
 };
 
-export const getSpells = async (): Promise<Spell[]> => {
+export const getSpellsByClass = async (className: string) => {
 	try {
-		const response: AxiosResponse<SpellsData> = await axios.post(
-			'https://www.dnd5eapi.co/graphql/',
-			{
-				query: `
-          query getSpells($order: SpellOrder) {
-            spells(order: $order) {
-              name
-              desc
-              index
-              level
-              range
-              ritual
-              duration
-              casting_time
-              components
-              attack_type
-              damage {
-                damage_at_character_level {
-                  level
-                  damage
-                }
-                damage_at_slot_level {
-                  damage
-                  level
-                }
-              }
-              area_of_effect {
-                size
-                type
-              }
-              classes {
-                index
-              }
-              concentration
-              school {
-                name
-              }
-              dc {
-                type {
-                  full_name
-                }
-              }
-            }
-          }
-        `,
-				variables: {
-					order: {
-						by: 'NAME'
-					}
-				}
-			}
+		const response = await fetch(
+			`${apiUrl}/spells/?${documentSlug}&dnd_class__icontains=${className}&limit=1000`
 		);
 
-		return response.data.data.spells;
-	} catch (err) {
-		console.error('Error:', err);
-		return [];
+		if (!response.ok) {
+			throw new Error(`Request failed with status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data.results;
+	} catch (error) {
+		console.error('Error fetching spells:', error);
+		throw error;
 	}
 };
