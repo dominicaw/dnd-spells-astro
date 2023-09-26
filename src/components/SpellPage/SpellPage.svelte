@@ -37,11 +37,11 @@
 				<p>{spell.dc.type.full_name} saving throw</p>
 			</SpellComponent>
 		{/if}
-		{#if spell.damage}
+		{#if spell.damage?.length > 0}
 			<SpellComponent>
 				<p>
-					{spell.damage?.damage_at_slot_level[0].damage} (Level {spell.damage
-						?.damage_at_slot_level[0].level})
+					{spell.damage?.damage_at_slot_level[0]?.damage} (Level {spell.damage
+						?.damage_at_slot_level[0]?.level})
 				</p>
 			</SpellComponent>
 		{/if}
