@@ -9,24 +9,21 @@
 	>
 		<p class="uppercase">{currentSpell.name}</p>
 		<hr class="mb-3 mt-1" />
-		{#if currentSpell.level == 0}
-			<p>{currentSpell.school.name} cantrip</p>
+		{#if currentSpell.level_int == 0}
+			<p>{currentSpell.school} cantrip</p>
 		{:else}
-			<p>Level {currentSpell.level} {currentSpell.school.name}</p>
+			<p>Level {currentSpell.level_int} {currentSpell.school}</p>
 		{/if}
 		<p><strong>Casting time: </strong>{currentSpell.casting_time}</p>
 		<p><strong>Range: </strong>{currentSpell.range}</p>
 		<p><strong>Components: </strong>{currentSpell.components}</p>
 		<p>
 			<strong>Duration: </strong>
-			{#if currentSpell.concentration}
+			{#if currentSpell.requires_concentration}
 				Concentration,
 			{/if}
 			{currentSpell.duration}
 		</p>
-		{#if currentSpell.dc}
-			<p><strong>Saving throw:</strong> {currentSpell.dc.type.full_name}</p>
-		{/if}
 		<p />
 	</article>
 </a>

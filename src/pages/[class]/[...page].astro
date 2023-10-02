@@ -3,6 +3,7 @@ import SpellsGrid from '../../components/SpellsGrid/SpellsGrid.svelte';
 import { classEmoji, classEmojiSorter } from '../../helpers/classEmoji';
 import type { Class } from '../../interfaces/class';
 import Layout from '../../layouts/Layout.svelte';
+import { Debug } from 'astro/components';
 
 import { getClasses, getSpellsByClass } from '../../lib/api';
 
@@ -29,6 +30,7 @@ export const getStaticPaths = async () => {
 
 const { mainClass, spells } = Astro.props;
 ---
+<!-- <Debug {spells}/> -->
 <Layout>
   <section>
     <h1 class="text-2xl pb-4">

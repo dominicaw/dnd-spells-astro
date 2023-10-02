@@ -26,5 +26,7 @@
 	html {
 		font-family: 'Montserrat', Helvetica, system-ui, sans-serif;
 		background-color: #f6f6f6;
+		font-size: 18px;
+		line-height: 190%;
 	}
 </style>
