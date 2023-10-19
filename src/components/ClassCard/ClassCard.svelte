@@ -13,6 +13,7 @@
 		</div>
 
 		<p>{currentClass?.name}</p>
+		<p>test</p>
 	</div>
 </a>
 
